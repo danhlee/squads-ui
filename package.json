@@ -1,0 +1,25 @@
+{
+  "name": "squads-ui",
+  "version": "1.0.0",
+  "description": "user interface for squads",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/danhlee/squads-ui.git"
+  },
+  "author": "danhlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danhlee/squads-ui/issues"
+  },
+  "homepage": "https://github.com/danhlee/squads-ui#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
