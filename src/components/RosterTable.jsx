@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Champion from './Champion';
 import Autosuggest from 'react-autosuggest';
+import championIds from '../data/championId.json';
+import championIdsString from '../data/championIdString.json';
 
 class RosterTable extends Component {
   constructor(props) {
@@ -23,12 +25,12 @@ class RosterTable extends Component {
         <tbody>
           <tr>
             <th>TOP</th>
-            <th><Autosuggest suggestions={}/></th>
+            <th><input type="text"></input></th>
             <th><Champion id={1}/></th>
           </tr>
           <tr>
             <th>JUNGLE</th>
-            <td>[__________]</td>
+            <th><input type="text"></input></th>
             <th><Champion id={1}/></th>
           </tr>
           <tr>
