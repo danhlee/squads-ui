@@ -7,3 +7,18 @@ h1 {
 .cursor_pointer {
   cursor: pointer;
 }
+
+.champion_0 {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: url(../assets/champion-icons/0.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  float: right;
+  height: 50px;
+  background-size: 50px;
+}
+
+
+/* padding-left: 180px; */
