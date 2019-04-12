@@ -21,7 +21,7 @@ class Navbar extends Component {
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           
-          <div className="navbar-brand cursor_pointer" id="HOME" onClick={this.selectPage} >SQUADS</div>
+          <div className="navbar-brand cursor_pointer" id="DRAFT" onClick={this.selectPage} >SQUADS</div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -29,7 +29,7 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item cursor_pointer active">
-                <a id="HOME" onClick={this.selectPage} className="nav-link" role="button" >Home <span className="sr-only">(current)</span></a>
+                <a id="DRAFT" onClick={this.selectPage} className="nav-link" role="button" >Draft <span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item cursor_pointer">
                 <a id="ADMIN" onClick={this.selectPage} className="nav-link" role="button">Admin</a>

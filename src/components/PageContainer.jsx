@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Home from './Home';
+import Draft from './Draft';
 import Admin from './Admin'
 import About from './About'
 
-class Container extends Component {
+class PageContainer extends Component {
   constructor(props) {
     super(props);
     this.showPage = this.showPage.bind(this);
@@ -11,10 +11,10 @@ class Container extends Component {
 
   showPage() {
     const { pageName } = this.props;
-    if (pageName == 'HOME') {
+    if (pageName == 'DRAFT') {
       return (
         <div>
-          <Home/>
+          <Draft/>
         </div>
       );
     }
@@ -43,4 +43,4 @@ class Container extends Component {
   }
 }
 
-export default Container;
+export default PageContainer;

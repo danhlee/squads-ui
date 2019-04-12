@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import '../styles/App.css';
 import Navbar from './Navbar';
-import Container from './Container';
+import PageContainer from './PageContainer';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName: 'HOME'
+      pageName: 'DRAFT'
     }
     this.setPageName = this.setPageName.bind(this);
   }
@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div>
         <Navbar setPageNameCB={this.setPageName} />
-        <Container pageName={this.state.pageName} />
+        <PageContainer pageName={this.state.pageName} />
       </div>
     );
   }
