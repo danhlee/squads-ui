@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import '../styles/App.css';
 import Navbar from './Navbar';
 import PageContainer from './PageContainer';
+
+import '../styles/App.css';
+import '../styles/Champions.css';
 
 class App extends Component {
   constructor(props) {
