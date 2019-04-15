@@ -11,7 +11,9 @@ class ChampionIcon extends Component {
 
   getClassName() {
     let championClass = 'champion_' + this.props.id;
-    console.log('CHAMP CLASS = ' + championClass);
+
+    // console.log('CHAMP CLASS = ' + championClass);
+
     return championClass;
   }
 
@@ -19,10 +21,8 @@ class ChampionIcon extends Component {
     console.log('name = ' + this.props.name)
     return (
       <div>
-        
-          <div className={this.getClassName()} ></div>
-          <div className="figure-caption"> {this.props.name}</div>
-        
+        <div className={this.getClassName()} ></div>
+        <div className="figure-caption"> {this.props.name}</div>
       </div>
     );
   }

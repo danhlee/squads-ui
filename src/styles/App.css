@@ -6,164 +6,27 @@ body {
   background-color: blue;
   color: white;
 }
+
 .team_200_red {
   background-color: red;
   color: white;
 }
 
-.champion_0 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/0.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
+.dark-background {
+  background-color: #343a40;
 }
 
-.champion_1 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/1.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
+.center {
+  text-align: center;
 }
 
-.champion_2 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/2.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-
-.champion_3 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/3.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-
-.champion_4 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/4.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_5 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/5.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-
-.champion_6 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/6.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_7 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/7.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_8 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/8.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_9 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/9.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_10 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/10.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_5 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/5.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
-}
-.champion_5 {
-  display: block;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url(../assets/champion-icons/5.png);
-  background-repeat: no-repeat;
-  width: 50px;
-  float: right;
-  height: 50px;
-  background-size: 50px;
+.margin_top_50 {
+  margin-top: 50px;
 }
 
 .cursor_pointer {
   cursor: pointer;
 }
-
 
 .react-autosuggest__container {
   position: relative;
