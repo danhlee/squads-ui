@@ -1,6 +1,5 @@
 {
   "championArray": [
-    { "id": "0", "name": "Unknown" },
     { "id": "1", "name": "Annie" },
     { "id": "2", "name": "Olaf" },
     { "id": "3", "name": "Galio" },

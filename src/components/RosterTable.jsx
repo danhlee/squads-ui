@@ -22,8 +22,6 @@ class RosterTable extends Component {
 
   // retrieving championId from the store
   getChampionId(role) {
-    console.log('role = ' + role)
-    console.log('this.props.roster = ' + this.props.roster);
     
     if (role === 'b_top') {
       return this.props.rosterIds.b_top;
@@ -50,7 +48,6 @@ class RosterTable extends Component {
 
   // get champion name from the store
   getChampionName(role) {    
-    console.log('this.props.roster.b_top = ' + this.props.roster.b_top);
 
     if (role === 'b_top') {
       return this.props.roster.b_top;

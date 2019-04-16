@@ -12,7 +12,6 @@ export function setRosterIds(payload) {
 
 
 
-
 export const mapStateToProps = (state) => {
   return {
     roster: state.squadsReducer.roster,

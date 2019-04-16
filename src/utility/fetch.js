@@ -7,26 +7,30 @@ export const TREE_MODEL = '?modelName=TREE'
 export const RANDOM_FOREST_MODEL = '?modelName=RAND'
 const BASE_URL = 'https://squalorarchives-squads-api.herokuapp.com';
 
-export function getRequest(endpoint) {
+export function getRequest(endpoint, responseCallback, modelParam) {
   let options = {
     method: 'GET'
   };
 
   let url = BASE_URL + endpoint;
   
+  if (modelParam) {
+    url = url + modelParam;
+  }
+  console.log('url = ' + url);
   fetch(url, options)
     .then(function(response) {
       console.log('response...');
       response.text().then(function (text) {
         console.log('text from response is ...' + text);
-        console.log(text);
+        responseCallback(endpoint, text);
       });
       
     })
     .catch(error => console.error('Error:', error));
 }
 
-export function postRequest(endpoint, param, data) {
+export function postRequest(endpoint, modelParam, data, setWinnerCallback) {
   let options = {
     method: 'POST',
     body: JSON.stringify(data),
@@ -35,13 +39,25 @@ export function postRequest(endpoint, param, data) {
     }
   };
 
-  let url = BASE_URL + endpoint + param;
+  let url = BASE_URL + endpoint + modelParam;
 
   fetch(url, options)
     .then(function(response) {
-      console.log('response.json()...');
+
+      console.log('JSON.stringify(response)...');
+      let json_result = response.json();
       
-      console.log(response.json());
+      console.log(json_result);
+      return json_result;
     })
-    .catch(error => console.error('Error:', error));
+    .then( promise => {
+      console.log('promise[winner] = ');
+      console.log(promise['winner']);
+      setWinnerCallback(promise['winner']);
+    })
+    .catch(error => { 
+      console.error('Error:', error);
+      setWinnerCallback('0');
+    });
 }
+

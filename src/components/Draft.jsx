@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import RosterTable from './RosterTable';
 import Results from './Results';
-import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators.js';
+import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
 import { connect } from 'react-redux';
 import { PREDICT, TREE_MODEL, postRequest } from '../utility/fetch';
 
@@ -19,10 +19,10 @@ class Draft extends Component {
     this.allRolesSelected = this.allRolesSelected.bind(this);
     this.resetClearFields = this.resetClearFields.bind(this);
     this.createRoster = this.createRoster.bind(this);
+    this.setWinner = this.setWinner.bind(this);
   }
 
   getPrediction() {
-
     // if all 10 champs present get roster from store
     if (this.allRolesSelected()) {
       console.log('creating json object...');
@@ -32,34 +32,72 @@ class Draft extends Component {
       console.log(json_roster);
 
       console.log('getting prediction using ' + TREE_MODEL + '...');
-      postRequest(PREDICT, TREE_MODEL, json_roster);
+      postRequest(PREDICT, TREE_MODEL, json_roster, this.setWinner);
+
     }
     else {
       console.log('not all roles selected...');
       this.setState({
-        winner: '0'
+        winner: 'invalid'
       });
     }
+  }
 
-
-
+  setWinner(winningTeamId) {
+    this.setState({
+      winner: winningTeamId
+    });
   }
 
   createRoster() {
-    return {
+    const {rosterIds} = this.props;
+
+    // TEST ROSTERS
+    const test_case_100 = {
       "roster": {
-        "b_top": "240",
-        "b_jung": "64",
-        "b_mid": "1",
-        "b_bot": "29",
-        "b_sup": "63",
-        "r_top": "17",
-        "r_jung": "24",
-        "r_mid": "238",
-        "r_bot": "51",
-        "r_sup": "432"
+          "b_top": "240",
+          "b_jung": "64",
+          "b_mid": "1",
+          "b_bot": "29",
+          "b_sup": "63",
+          "r_top": "17",
+          "r_jung": "24",
+          "r_mid": "238",
+          "r_bot": "51",
+          "r_sup": "432"
+        }
+    };
+    const test_case_200 = {
+      "roster": {
+          "b_top": "54",
+          "b_jung": "107",
+          "b_mid": "238",
+          "b_bot": "236",
+          "b_sup": "99",
+          "r_top": "62",
+          "r_jung": "92",
+          "r_mid": "103",
+          "r_bot": "96",
+          "r_sup": "25"
       }
     }
+
+    let request_roster = {
+      "roster": {
+        "b_top": rosterIds.b_top,
+        "b_jung": rosterIds.b_jung,
+        "b_mid": rosterIds.b_mid,
+        "b_bot": rosterIds.b_bot,
+        "b_sup": rosterIds.b_sup,
+        "r_top": rosterIds.r_top,
+        "r_jung": rosterIds.r_jung,
+        "r_mid": rosterIds.r_mid,
+        "r_bot": rosterIds.r_bot,
+        "r_sup": rosterIds.r_sup
+      }
+    }
+
+    return request_roster;
   }
 
   resetClearFields() {
@@ -115,6 +153,7 @@ class Draft extends Component {
     });
 
     this.setState({
+      winner: '',
       clearFields: true
     });
   }

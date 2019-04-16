@@ -35,8 +35,6 @@ function squadsReducer(state = initialState, action) {
     case SET_ROSTER:
       console.log('SET_ROSTER payload is ...');
       console.log(action.payload);
-      console.log('state.roster = ');
-      console.log(state.roster);
 
       return Object.assign({}, state, {
         roster: Object.assign({}, state.roster, action.payload)
@@ -44,8 +42,6 @@ function squadsReducer(state = initialState, action) {
     case SET_ROSTER_IDS:
       console.log('SET_ROSTER payload is ...');
       console.log(action.payload);
-      console.log('state.roster = ');
-      console.log(state.rosterIds);
 
       return Object.assign({}, state, {
         rosterIds: Object.assign({}, state.rosterIds, action.payload)

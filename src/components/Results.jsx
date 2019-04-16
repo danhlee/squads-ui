@@ -8,7 +8,7 @@ class Results extends Component {
     }
   }
 
-  
+
 
   render() {
     if (this.props.winner === '100') {
@@ -17,7 +17,7 @@ class Results extends Component {
           Blue team wins!
         </div>
       );
-    } 
+    }
     else if (this.props.winner === '200') {
       return (
         <div className="team_200_red center margin_top_50">
@@ -25,19 +25,21 @@ class Results extends Component {
         </div>
       );
     }
-    else if (this.props.winner === 'error') {
-      <div className="center margin_top_50">
-          PLEASE SELECT A CHAMPION FOR EVERY ROLE!
-      </div>
-    } 
-    else {
+    else if (this.props.winner === 'invalid') {
       return (
-        <div className="center margin_top_50">
-          
+        <div className="invalid_yellow center margin_top_50">
+          PLEASE SELECT A CHAMPION FOR EVERY ROLE!
         </div>
       );
     }
-    
+    else {
+      return (
+        <div className="center margin_top_50">
+
+        </div>
+      );
+    }
+
   }
 }
 

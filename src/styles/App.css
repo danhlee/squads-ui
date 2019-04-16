@@ -2,27 +2,30 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+/** color */
 .team_100_blue {
   background-color: blue;
   color: white;
 }
-
 .team_200_red {
   background-color: red;
   color: white;
 }
-
-.dark-background {
-  background-color: #343a40;
+.invalid_yellow {
+  background-color: yellow;
+  color: black;
 }
 
+/** position */
 .center {
-  text-align: center;
+  text-align-last: center;
+}
+.margin_top_30 {
+  margin-top: 30px;
+  border: solid;
 }
 
-.margin_top_50 {
-  margin-top: 50px;
-}
+
 
 .cursor_pointer {
   cursor: pointer;
