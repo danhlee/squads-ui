@@ -100,35 +100,35 @@ class RosterTable extends Component {
           <tr>
             <th>TOP</th>
             <th>
-              <InputWrapper role={state.top} />
+              <InputWrapper role={state.top} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
             </th>
             <th><ChampionIcon id={this.getChampionId(state.top)} name={this.getChampionName(state.top)} /></th>
           </tr>
           <tr>
             <th>JUNGLE</th>
             <th>
-              <InputWrapper role={state.jung} />
+              <InputWrapper role={state.jung} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields}  />
             </th>
             <th><ChampionIcon id={this.getChampionId(state.jung)} name={this.getChampionName(state.jung)} /></th>
           </tr>
           <tr>
             <th>MIDDLE</th>
             <td>
-              <InputWrapper role={state.mid} />
+              <InputWrapper role={state.mid} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
             </td>
             <th><ChampionIcon id={this.getChampionId(state.mid)} name={this.getChampionName(state.mid)} /></th>
           </tr>
           <tr>
             <th>BOTTOM</th>
             <td>
-              <InputWrapper role={state.bot} />
+              <InputWrapper role={state.bot} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields}  />
             </td>
             <th><ChampionIcon id={this.getChampionId(state.bot)} name={this.getChampionName(state.bot)} /></th>
           </tr>
           <tr>
             <th>SUPPORT</th>
             <td>
-              <InputWrapper role={state.sup} />
+              <InputWrapper role={state.sup} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
             </td>
             <th><ChampionIcon id={this.getChampionId(state.sup)} name={this.getChampionName(state.sup)} /></th>
           </tr>

@@ -46,6 +46,17 @@ class InputWrapper extends Component {
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
+  componentDidUpdate() {
+    if (this.props.clearFields === true && this.state.value !== '') {
+      console.log('clearing input values....')
+      this.setState({
+        value: ''
+      });
+      this.props.resetClearFields();
+    }
+
+  }
+
   onChange(event, { newValue, method }) {
     this.setState({
       value: newValue
@@ -153,6 +164,8 @@ class InputWrapper extends Component {
       value,
       onChange: this.onChange
     };
+
+
     return (
       <Autosuggest
         suggestions={suggestions}
