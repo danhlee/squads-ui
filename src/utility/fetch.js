@@ -84,7 +84,7 @@ export function getRequestTrain(endpoint, responseCallback, modelParam) {
       console.log('promise[modelEvaluation] = ');
       let evaluation_json = promise['modelEvaluation'];
       console.log(evaluation_json);
-      responseCallback(endpoint, evaluation_json['classificationReport']);
+      responseCallback(endpoint, evaluation_json['confusionMatrix']);
     })
     .catch(error => { 
       console.error('Error:', error);
