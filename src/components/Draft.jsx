@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import RosterTable from './RosterTable';
 import Results from './Results';
 import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
 import { connect } from 'react-redux';
-import { PREDICT, TREE_MODEL, postRequest } from '../utility/fetch';
+import { PREDICT, TREE_MODEL, RANDOM_FOREST_MODEL, postRequest } from '../utility/fetch';
 
 class Draft extends Component {
   constructor(props) {
     super(props);
     this.state = {
       winner: '',
-      clearFields: false
+      clearFields: false,
+      dropdownOpen: false,
     }
 
     this.getPrediction = this.getPrediction.bind(this);
@@ -20,19 +21,34 @@ class Draft extends Component {
     this.resetClearFields = this.resetClearFields.bind(this);
     this.createRoster = this.createRoster.bind(this);
     this.setWinner = this.setWinner.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
-  getPrediction() {
+  getPrediction(event) {
     // if all 10 champs present get roster from store
     if (this.allRolesSelected()) {
+
+      let modelText = event.target.innerText;
+      let selectedModel = '';
+
+      console.log('event.target.innerText = ' + event.target.innerText);
+
+      // default is TREE_MODEL
+      if (modelText === 'Random Forest') {
+        selectedModel = RANDOM_FOREST_MODEL;
+
+      } else {
+        selectedModel = TREE_MODEL;
+      }
+
       console.log('creating json object...');
       let json_roster = this.createRoster();
 
       console.log('json_roster = ' + json_roster);
       console.log(json_roster);
 
-      console.log('getting prediction using ' + TREE_MODEL + '...');
-      postRequest(PREDICT, TREE_MODEL, json_roster, this.setWinner);
+      console.log('getting prediction using ' + selectedModel + '...');
+      postRequest(PREDICT, selectedModel, json_roster, this.setWinner);
 
     }
     else {
@@ -50,35 +66,35 @@ class Draft extends Component {
   }
 
   createRoster() {
-    const {rosterIds} = this.props;
+    const { rosterIds } = this.props;
 
     // TEST ROSTERS
     const test_case_100 = {
       "roster": {
-          "b_top": "240",
-          "b_jung": "64",
-          "b_mid": "1",
-          "b_bot": "29",
-          "b_sup": "63",
-          "r_top": "17",
-          "r_jung": "24",
-          "r_mid": "238",
-          "r_bot": "51",
-          "r_sup": "432"
-        }
+        "b_top": "240",
+        "b_jung": "64",
+        "b_mid": "1",
+        "b_bot": "29",
+        "b_sup": "63",
+        "r_top": "17",
+        "r_jung": "24",
+        "r_mid": "238",
+        "r_bot": "51",
+        "r_sup": "432"
+      }
     };
     const test_case_200 = {
       "roster": {
-          "b_top": "54",
-          "b_jung": "107",
-          "b_mid": "238",
-          "b_bot": "236",
-          "b_sup": "99",
-          "r_top": "62",
-          "r_jung": "92",
-          "r_mid": "103",
-          "r_bot": "96",
-          "r_sup": "25"
+        "b_top": "78",
+        "b_jung": "35",
+        "b_mid": "61",
+        "b_bot": "119",
+        "b_sup": "40",
+        "r_top": "23",
+        "r_jung": "141",
+        "r_mid": "4",
+        "r_bot": "22",
+        "r_sup": "201"
       }
     }
 
@@ -97,7 +113,9 @@ class Draft extends Component {
       }
     }
 
-    return request_roster;
+    // TODO
+    return test_case_200;
+    //return request_roster;
   }
 
   resetClearFields() {
@@ -109,6 +127,9 @@ class Draft extends Component {
   allRolesSelected() {
     const { rosterIds } = this.props;
     let allSelected = true;
+
+    // TODO
+    return true;
 
     for (var role in rosterIds) {
       if (rosterIds.hasOwnProperty(role)) {
@@ -158,10 +179,16 @@ class Draft extends Component {
     });
   }
 
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
   render() {
     return (
       <div className="container-fluid">
-        <Row>
+        <Row className="black_background">
           <Col id="team_100_blue" className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <RosterTable team_color={'b'} clearFields={this.state.clearFields} resetClearFields={this.resetClearFields} />
           </Col>
@@ -171,16 +198,32 @@ class Draft extends Component {
           </Col>
         </Row>
 
-        <Row>
-          <Col>
+        <Row className="black_background padding_top_30">
+          <Col id="gather_btn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
             <div id="prediction-container" className="center">
-              <Button onClick={this.getPrediction} color="success">predict</Button>
-              <Button onClick={this.clearFields} color="link">clear</Button>
+              {/* <Button onClick={this.getPrediction} color="success">predict</Button> */}
+                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle color="success" caret>
+                    <span
+                      onClick={this.toggle}
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded={this.state.dropdownOpen}
+                    > predict
+                  </span>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem onClick={this.getPrediction}>Decision Tree</DropdownItem>
+                    <DropdownItem onClick={this.getPrediction}>Random Forest</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+                <Button onClick={this.clearFields} color="link">clear</Button>
             </div>
+
           </Col>
         </Row>
 
-        <Row>
+        <Row className="black_background">
           <Col>
             <Results winner={this.state.winner} />
           </Col>

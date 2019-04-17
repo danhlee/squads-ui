@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="black_background">
         <Navbar setPageNameCB={this.setPageName} />
         <PageContainer pageName={this.state.pageName} />
       </div>

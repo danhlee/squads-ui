@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Draft from './Draft';
 import Admin from './Admin'
-import About from './About'
 
 class PageContainer extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class PageContainer extends Component {
     else {
       return (
         <div>
-          <About/>
+          FUTURE PAGES HERE
         </div>
       );
     }
@@ -36,7 +35,7 @@ class PageContainer extends Component {
   
   render() {
     return (
-      <div>
+      <div className="white_background">
         {this.showPage()}
       </div>
     );

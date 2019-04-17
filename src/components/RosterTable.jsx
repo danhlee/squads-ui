@@ -84,7 +84,7 @@ class RosterTable extends Component {
   render() {
     const state = this.state;
     return (
-      <table className="table">
+      <table className="table white_background margin_top_30">
         <thead className={this.getColorClass()}>
           <tr>
             <th scope="col">Role</th>

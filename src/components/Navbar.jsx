@@ -26,16 +26,13 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarColor01">
+          <div className="collapse navbar-collapse">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item cursor_pointer active">
-                <a id="DRAFT" onClick={this.selectPage} className="nav-link" role="button" >Draft <span className="sr-only">(current)</span></a>
+              <li className="nav-item cursor_pointer">
+                <a id="DRAFT" onClick={this.selectPage} className="nav-link nav-link-ltr" role="button"> Draft </a>
               </li>
               <li className="nav-item cursor_pointer">
-                <a id="ADMIN" onClick={this.selectPage} className="nav-link" role="button">Admin</a>
-              </li>
-              <li className="nav-item cursor_pointer" >
-                <a id='ABOUT' onClick={this.selectPage} className="nav-link" role="button">About</a>
+                <a id="ADMIN" onClick={this.selectPage} className="nav-link nav-link-ltr" role="button"> Admin </a>
               </li>
             </ul>
           </div>

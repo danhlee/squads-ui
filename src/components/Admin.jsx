@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux';
 import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, RANDOM_FOREST_MODEL } from '../utility/fetch';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
 
 class Admin extends Component {
@@ -43,11 +42,12 @@ class Admin extends Component {
 
     let response = '';
 
-    if (modelText === 'Decision Tree') {
-      response = getRequest(TRAIN, this.responseCallback, TREE_MODEL);
-
-    } else if (modelText === 'Random Forest') {
+    // default is TREE_MODEL
+    if (modelText === 'Random Forest') {
       response = getRequest(TRAIN, this.responseCallback, RANDOM_FOREST_MODEL);
+
+    } else {
+      response = getRequest(TRAIN, this.responseCallback, TREE_MODEL);
     }
 
     this.setState({
@@ -56,9 +56,9 @@ class Admin extends Component {
   }
 
   toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   responseCallback(endpoint, textResponse) {
@@ -88,8 +88,8 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <Row className="margin_top_30">
+      <div className="container-fluid black_background">
+        <Row className="margin_top_30 padding_top_bot_15 lightgrey_background border_bottom">
           <Col id="seed_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
             <Button onClick={this.initializeWithSeedData} color="info">seed</Button>
           </Col>
@@ -99,7 +99,7 @@ class Admin extends Component {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="padding_top_bot_15 lightgrey_background border_bottom">
           <Col id="gather_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
             <Button onClick={this.gatherAndInsertNewData} color="primary">gather</Button>
           </Col>
@@ -109,7 +109,7 @@ class Admin extends Component {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="padding_top_bot_15 lightgrey_background">
           <Col id="train_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle color="warning" caret>
@@ -117,7 +117,8 @@ class Admin extends Component {
                   onClick={this.toggle}
                   data-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded={this.state.dropdownOpen}>train
+                  aria-expanded={this.state.dropdownOpen}
+                >train
                 </span>
               </DropdownToggle>
               <DropdownMenu>
@@ -127,11 +128,12 @@ class Admin extends Component {
             </Dropdown>
           </Col>
 
-          <Col id="train_response" className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          <Col id="train_response" className="padding_top_bot_15 col-lg-6 col-md-12 col-sm-12 col-xs-12">
             {this.state.trainResponse}
           </Col>
         </Row>
-        <Row >
+
+        <Row className="padding_top_bot_15">
           <Col id="clear_response_link" className="center">
             <Button onClick={this.clearResponses} color="link">clear</Button>
           </Col>

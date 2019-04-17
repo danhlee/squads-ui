@@ -1,5 +1,6 @@
 body {
   font-family: Helvetica, sans-serif;
+  background-color: #212529;
 }
 
 /** color */
@@ -15,6 +16,20 @@ body {
   background-color: yellow;
   color: black;
 }
+.black_background {
+  background-color: #212529;
+}
+.white_background {
+  background-color: white;
+}
+.lightgrey_background {
+  background-color: lightgrey;
+}
+.border_bottom {
+  border-bottom: solid;
+  border-color: #212529;
+}
+
 
 /** position */
 .center {
@@ -22,14 +37,30 @@ body {
 }
 .margin_top_30 {
   margin-top: 30px;
-  border: solid;
+}
+.margin_top_50 {
+  margin-top: 50px;
+}
+.padding_all_30 {
+  padding: 30px;
+}
+.padding_top_30 {
+  padding-top: 30px;
+}
+.padding_top_bot_15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 
-
+/** cursor */
 .cursor_pointer {
   cursor: pointer;
 }
+.cursor_text {
+  cursor: text;
+}
+
 
 .react-autosuggest__container {
   position: relative;
@@ -87,4 +118,45 @@ body {
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
+}
+
+
+/** navbar */
+.nav-link {
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #031D44;
+  padding: 20px 0px;
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link::before {
+  transition: 300ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: white;
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 10px;
+}
+
+.nav-link-ltr:hover::before {
+  width: 80%;
+}
+
+
+#test {
+  text-align: left;
 }

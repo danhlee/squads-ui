@@ -3,8 +3,8 @@ export const SEED = '/seed';
 export const GATHER = '/gather';
 export const TRAIN = '/train';
 export const PREDICT = '/predict';
-export const TREE_MODEL = '?modelName=TREE'
-export const RANDOM_FOREST_MODEL = '?modelName=RAND'
+export const TREE_MODEL = '?modelName=TREE';
+export const RANDOM_FOREST_MODEL = '?modelName=RAND';
 const BASE_URL = 'https://squalorarchives-squads-api.herokuapp.com';
 
 export function getRequest(endpoint, responseCallback, modelParam) {

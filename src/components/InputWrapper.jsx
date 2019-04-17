@@ -76,14 +76,10 @@ class InputWrapper extends Component {
   };
 
   onSuggestionSelected(event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) {
-    console.log('suggestion ===========> ' )
-    console.log(suggestion);
+
     let role = this.props.role;
 
     if (role === 'b_top') {
-      console.log('-------suggesttionID-----------> ' + suggestionValue)
-      console.log(suggestionValue);
-
       this.props.setRoster({
         b_top: suggestion.name
       });
@@ -174,8 +170,7 @@ class InputWrapper extends Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-
-        
+        className="cursor_text"
         onSuggestionSelected={this.onSuggestionSelected}
       />
     );
