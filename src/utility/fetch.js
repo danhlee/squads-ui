@@ -61,3 +61,32 @@ export function postRequest(endpoint, modelParam, data, setWinnerCallback) {
     });
 }
 
+export function getRequestTrain(endpoint, responseCallback, modelParam) {
+  let options = {
+    method: 'GET'
+  };
+
+  let url = BASE_URL + endpoint;
+  
+  if (modelParam) {
+    url = url + modelParam;
+  }
+  console.log('url = ' + url);
+  fetch(url, options)
+    .then(function(response) {
+      console.log('JSON.stringify(response)...');
+      let json_result = response.json();
+      
+      console.log(json_result);
+      return json_result;   
+    })
+    .then( function(promise) {
+      console.log('promise[modelEvaluation] = ');
+      let evaluation_json = promise['modelEvaluation'];
+      console.log(evaluation_json);
+      responseCallback(endpoint, evaluation_json['classificationReport']);
+    })
+    .catch(error => { 
+      console.error('Error:', error);
+    });
+}

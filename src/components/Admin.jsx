@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux';
-import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, RANDOM_FOREST_MODEL } from '../utility/fetch';
+import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, getRequestTrain, RANDOM_FOREST_MODEL } from '../utility/fetch';
 import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
 
 class Admin extends Component {
@@ -44,10 +44,10 @@ class Admin extends Component {
 
     // default is TREE_MODEL
     if (modelText === 'Random Forest') {
-      response = getRequest(TRAIN, this.responseCallback, RANDOM_FOREST_MODEL);
+      response = getRequestTrain(TRAIN, this.responseCallback, RANDOM_FOREST_MODEL);
 
     } else {
-      response = getRequest(TRAIN, this.responseCallback, TREE_MODEL);
+      response = getRequestTrain(TRAIN, this.responseCallback, TREE_MODEL);
     }
 
     this.setState({
