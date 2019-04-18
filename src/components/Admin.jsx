@@ -64,18 +64,6 @@ class Admin extends Component {
     this.setState({
       textResponse: textResponse
     });
-    // if (endpoint === SEED) {
-
-    // } else if (endpoint === GATHER) {
-    //   this.setState({
-    //     gatherResponse: textResponse
-    //   });
-    // }
-    // else if (endpoint === TRAIN) {
-    //   this.setState({
-    //     trainResponse: textResponse
-    //   });
-    // }
   }
 
   dataResponseCallback(modelEvalData) {
@@ -113,31 +101,6 @@ class Admin extends Component {
     return (
       <div className="container-fluid black_background">
         <Row className="margin_top_30 padding_top_bot_15 border_bottom center">
-          {/* <Col id="seed_btn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
-            <Button onClick={this.initializeWithSeedData} color="info">seed</Button>
-            <Button onClick={this.gatherAndInsertNewData} color="primary">gather</Button>
-            <Dropdown id="test" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle color="warning" caret>
-                <span
-                  onClick={this.toggle}
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded={this.state.dropdownOpen}
-                >train
-                </span>
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={this.trainSelectedModel}>Decision Tree</DropdownItem>
-                <DropdownItem onClick={this.trainSelectedModel}>Random Forest</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-
-          <Col id="seed_response" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            {this.state.seedResponse}
-          </Col> */}
-
-
           <Col className="col-lg-4 col-md-2 col-sm-2 col-xs-2"></Col>
           <Col>
             <Button onClick={this.initializeWithSeedData} color="info">seed</Button>
