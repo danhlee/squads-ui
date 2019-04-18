@@ -7,23 +7,20 @@ export const TREE_MODEL = '?modelName=TREE';
 export const RANDOM_FOREST_MODEL = '?modelName=RAND';
 const BASE_URL = 'https://squalorarchives-squads-api.herokuapp.com';
 
-export function getRequest(endpoint, responseCallback, modelParam) {
+export function getRequest(endpoint, textResponseCallback) {
   let options = {
     method: 'GET'
   };
 
   let url = BASE_URL + endpoint;
-  
-  if (modelParam) {
-    url = url + modelParam;
-  }
+
   console.log('url = ' + url);
   fetch(url, options)
     .then(function(response) {
       console.log('response...');
       response.text().then(function (text) {
         console.log('text from response is ...' + text);
-        responseCallback(endpoint, text);
+        textResponseCallback(text);
       });
       
     })
@@ -61,7 +58,7 @@ export function postRequest(endpoint, modelParam, data, setWinnerCallback) {
     });
 }
 
-export function getRequestTrain(endpoint, responseCallback, modelParam) {
+export function getRequestTrain(endpoint, modelParam, textResponseCallback, dataResponseCallback) {
   let options = {
     method: 'GET'
   };
@@ -78,13 +75,17 @@ export function getRequestTrain(endpoint, responseCallback, modelParam) {
       let json_result = response.json();
       
       console.log(json_result);
-      return json_result;   
+      return json_result;
     })
     .then( function(promise) {
       console.log('promise[modelEvaluation] = ');
-      let evaluation_json = promise['modelEvaluation'];
-      console.log(evaluation_json);
-      responseCallback(endpoint, evaluation_json['confusionMatrix']);
+      console.log(promise['modelEvaluation']);
+
+      console.log('promise[msg] = ');
+      console.log(promise['msg']);
+
+      textResponseCallback(promise['msg']);
+      dataResponseCallback(promise['modelEvaluation'])
     })
     .catch(error => { 
       console.error('Error:', error);

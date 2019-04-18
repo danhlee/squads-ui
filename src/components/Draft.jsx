@@ -113,9 +113,7 @@ class Draft extends Component {
       }
     }
 
-    // TODO
-    return test_case_200;
-    //return request_roster;
+    return request_roster;
   }
 
   resetClearFields() {
@@ -127,9 +125,6 @@ class Draft extends Component {
   allRolesSelected() {
     const { rosterIds } = this.props;
     let allSelected = true;
-
-    // TODO
-    return true;
 
     for (var role in rosterIds) {
       if (rosterIds.hasOwnProperty(role)) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ChampionIcon from './ChampionIcon';
 import InputWrapper from './InputWrapper';
-import {mapDispatchToProps, mapStateToProps} from '../redux/actionCreators';
-import {connect} from 'react-redux';
+import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
+import { connect } from 'react-redux';
 
 class RosterTable extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class RosterTable extends Component {
 
   // retrieving championId from the store
   getChampionId(role) {
-    
+
     if (role === 'b_top') {
       return this.props.rosterIds.b_top;
     } else if (role === 'b_jung') {
@@ -47,7 +47,7 @@ class RosterTable extends Component {
   }
 
   // get champion name from the store
-  getChampionName(role) {    
+  getChampionName(role) {
 
     if (role === 'b_top') {
       return this.props.roster.b_top;
@@ -90,44 +90,33 @@ class RosterTable extends Component {
             <th scope="col">Role</th>
             <th scope="col">Search</th>
             <th scope="col">Champion</th>
-
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>TOP</th>
-            <th>
-              <InputWrapper role={state.top} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
-            </th>
-            <th><ChampionIcon id={this.getChampionId(state.top)} name={this.getChampionName(state.top)} /></th>
+            <td><InputWrapper role={state.top} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} /></td>
+            <td><ChampionIcon id={this.getChampionId(state.top)} name={this.getChampionName(state.top)} /></td>
           </tr>
           <tr>
             <th>JUNGLE</th>
-            <th>
-              <InputWrapper role={state.jung} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields}  />
-            </th>
-            <th><ChampionIcon id={this.getChampionId(state.jung)} name={this.getChampionName(state.jung)} /></th>
+            <td><InputWrapper role={state.jung} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} /></td>
+            <td><ChampionIcon id={this.getChampionId(state.jung)} name={this.getChampionName(state.jung)} /></td>
           </tr>
           <tr>
             <th>MIDDLE</th>
-            <td>
-              <InputWrapper role={state.mid} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
-            </td>
-            <th><ChampionIcon id={this.getChampionId(state.mid)} name={this.getChampionName(state.mid)} /></th>
+            <td><InputWrapper role={state.mid} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} /></td>
+            <td><ChampionIcon id={this.getChampionId(state.mid)} name={this.getChampionName(state.mid)} /></td>
           </tr>
           <tr>
             <th>BOTTOM</th>
-            <td>
-              <InputWrapper role={state.bot} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields}  />
-            </td>
-            <th><ChampionIcon id={this.getChampionId(state.bot)} name={this.getChampionName(state.bot)} /></th>
+            <td><InputWrapper role={state.bot} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} /></td>
+            <td><ChampionIcon id={this.getChampionId(state.bot)} name={this.getChampionName(state.bot)} /></td>
           </tr>
           <tr>
             <th>SUPPORT</th>
-            <td>
-              <InputWrapper role={state.sup} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} />
-            </td>
-            <th><ChampionIcon id={this.getChampionId(state.sup)} name={this.getChampionName(state.sup)} /></th>
+            <td><InputWrapper role={state.sup} clearFields={this.props.clearFields} resetClearFields={this.props.resetClearFields} /></td>
+            <td><ChampionIcon id={this.getChampionId(state.sup)} name={this.getChampionName(state.sup)} /></td>
           </tr>
         </tbody>
       </table>

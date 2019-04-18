@@ -1,6 +1,7 @@
 import {
   SET_ROSTER,
-  SET_ROSTER_IDS
+  SET_ROSTER_IDS,
+  SET_MODEL_EVAL_DATA
 } from './actionCreators'
 
 const initialState = {
@@ -27,6 +28,11 @@ const initialState = {
     r_mid: '0',
     r_bot: '0',
     r_sup: '0'
+  },
+  modelEvalData: {
+    avgAccuracy: 0,
+    confusionMatrix: ['','','',''],
+    modelName: ''
   }
 }
 
@@ -40,11 +46,18 @@ function squadsReducer(state = initialState, action) {
         roster: Object.assign({}, state.roster, action.payload)
       });
     case SET_ROSTER_IDS:
-      console.log('SET_ROSTER payload is ...');
+      console.log('SET_ROSTER_IDS payload is ...');
       console.log(action.payload);
 
       return Object.assign({}, state, {
         rosterIds: Object.assign({}, state.rosterIds, action.payload)
+      });
+    case SET_MODEL_EVAL_DATA:
+      console.log('SET_MODEL_EVAL_DATA payload is ...');
+      console.log(action.payload);
+
+      return Object.assign({}, state, {
+        modelEvalData: Object.assign({}, state.modelEvalData, action.payload)
       });
   }
 

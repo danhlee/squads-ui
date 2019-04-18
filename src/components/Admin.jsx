@@ -3,6 +3,9 @@ import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem 
 import { connect } from 'react-redux';
 import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, getRequestTrain, RANDOM_FOREST_MODEL } from '../utility/fetch';
 import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
+import ConfusionMatrix from './eval/ConfusionMatrix';
+import ConfusionMatrixTable from './eval/ConfusionMatrixTable';
+import EvaluationResults from './eval/EvaluationResults';
 
 class Admin extends Component {
   constructor(props) {
@@ -10,28 +13,30 @@ class Admin extends Component {
     this.state = {
       selectedModel: TREE_MODEL,
       dropdownOpen: false,
-      seedResponse: '',
-      gatherResponse: '',
-      trainResponse: ''
+      textResponse: ''
     }
     this.initializeWithSeedData = this.initializeWithSeedData.bind(this);
     this.gatherAndInsertNewData = this.gatherAndInsertNewData.bind(this);
     this.trainSelectedModel = this.trainSelectedModel.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.responseCallback = this.responseCallback.bind(this);
+    this.textResponseCallback = this.textResponseCallback.bind(this);
+    this.dataResponseCallback = this.dataResponseCallback.bind(this);
     this.clearResponses = this.clearResponses.bind(this);
   }
 
   initializeWithSeedData() {
     console.log('initializing db with seed match data...');
-    let response = getRequest(SEED, this.responseCallback);
+    let response = getRequest(SEED, this.textResponseCallback);
+    this.setState({
+      textResponse: response
+    });
   }
 
   gatherAndInsertNewData() {
     console.log('gathering new match data and adding to db...');
-    let response = getRequest(GATHER, this.responseCallback);
+    let response = getRequest(GATHER, this.textResponseCallback);
     this.setState({
-      gatherResponse: response
+      textResponse: response
     });
   }
 
@@ -44,15 +49,58 @@ class Admin extends Component {
 
     // default is TREE_MODEL
     if (modelText === 'Random Forest') {
-      response = getRequestTrain(TRAIN, this.responseCallback, RANDOM_FOREST_MODEL);
+      response = getRequestTrain(TRAIN, RANDOM_FOREST_MODEL, this.textResponseCallback, this.dataResponseCallback);
 
     } else {
-      response = getRequestTrain(TRAIN, this.responseCallback, TREE_MODEL);
+      response = getRequestTrain(TRAIN, TREE_MODEL, this.textResponseCallback, this.dataResponseCallback);
     }
 
     this.setState({
       trainResponse: response
     });
+  }
+
+  textResponseCallback(textResponse) {
+    this.setState({
+      textResponse: textResponse
+    });
+    // if (endpoint === SEED) {
+
+    // } else if (endpoint === GATHER) {
+    //   this.setState({
+    //     gatherResponse: textResponse
+    //   });
+    // }
+    // else if (endpoint === TRAIN) {
+    //   this.setState({
+    //     trainResponse: textResponse
+    //   });
+    // }
+  }
+
+  dataResponseCallback(modelEvalData) {
+    const {setModelEvalData} = this.props;
+    setModelEvalData(modelEvalData);
+  }
+
+  clearResponses() {
+    this.setState({
+      textResponse: '',
+    });
+  }
+
+  getModelName() {
+    const {modelEvalData} = this.props;
+
+    if (modelEvalData.modelName === 'TREE') {
+      return 'Decision Tree Model Evaluation';
+    }
+    else if (modelEvalData.modelName === 'RAND') {
+      return 'Random Forest Model Evaluation';
+    }
+    else {
+      return '';
+    }
   }
 
   toggle() {
@@ -61,57 +109,14 @@ class Admin extends Component {
     });
   }
 
-  responseCallback(endpoint, textResponse) {
-    if (endpoint === SEED) {
-      this.setState({
-        seedResponse: textResponse
-      });
-    } else if (endpoint === GATHER) {
-      this.setState({
-        gatherResponse: textResponse
-      });
-    }
-    else if (endpoint === TRAIN) {
-      this.setState({
-        trainResponse: textResponse
-      });
-    }
-  }
-
-  clearResponses() {
-    this.setState({
-      seedResponse: '',
-      gatherResponse: '',
-      trainResponse: ''
-    });
-  }
-
   render() {
     return (
       <div className="container-fluid black_background">
-        <Row className="margin_top_30 padding_top_bot_15 lightgrey_background border_bottom">
-          <Col id="seed_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
+        <Row className="margin_top_30 padding_top_bot_15 border_bottom center">
+          {/* <Col id="seed_btn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
             <Button onClick={this.initializeWithSeedData} color="info">seed</Button>
-          </Col>
-
-          <Col id="seed_response" className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            {this.state.seedResponse}
-          </Col>
-        </Row>
-
-        <Row className="padding_top_bot_15 lightgrey_background border_bottom">
-          <Col id="gather_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
             <Button onClick={this.gatherAndInsertNewData} color="primary">gather</Button>
-          </Col>
-
-          <Col id="gather_response" className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            {this.state.gatherResponse}
-          </Col>
-        </Row>
-
-        <Row className="padding_top_bot_15 lightgrey_background">
-          <Col id="train_btn" className="col-lg-6 col-md-12 col-sm-12 col-xs-12 center">
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <Dropdown id="test" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle color="warning" caret>
                 <span
                   onClick={this.toggle}
@@ -128,8 +133,59 @@ class Admin extends Component {
             </Dropdown>
           </Col>
 
-          <Col id="train_response" className="padding_top_bot_15 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            {this.state.trainResponse}
+          <Col id="seed_response" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {this.state.seedResponse}
+          </Col> */}
+
+
+          <Col className="col-lg-4 col-md-2 col-sm-2 col-xs-2"></Col>
+          <Col>
+            <Button onClick={this.initializeWithSeedData} color="info">seed</Button>
+          </Col>
+          <Col>
+            <Button onClick={this.gatherAndInsertNewData} color="primary">gather</Button>
+          </Col>
+          <Col>
+            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle color="warning" caret>
+                <span
+                  onClick={this.toggle}
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded={this.state.dropdownOpen}
+                >train
+                </span>
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={this.trainSelectedModel}>Decision Tree</DropdownItem>
+                <DropdownItem onClick={this.trainSelectedModel}>Random Forest</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </Col>
+          <Col className="col-lg-4 col-md-2 col-sm-2 col-xs-2"></Col>
+        </Row>
+
+        <Row className="padding_top_bot_15 lightgrey_background border_bottom center">
+          <Col id="text_response" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h6 className="ital" >{this.state.textResponse}</h6>
+          </Col>
+        </Row>
+
+        <Row className="padding_top_bot_15 lightgrey_background center">
+          <Col id="modelName">
+            <h5>{this.getModelName()}</h5>
+          </Col>
+        </Row>
+
+        <Row className="padding_top_bot_15 lightgrey_background center">
+          <Col id="confusion_matrix" >
+            <ConfusionMatrix />
+          </Col>
+          <Col id="confusion_matrix_table" >
+            <ConfusionMatrixTable />
+          </Col>
+          <Col id="model_evaluation_results" >
+            <EvaluationResults />
           </Col>
         </Row>
 

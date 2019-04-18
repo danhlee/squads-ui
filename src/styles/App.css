@@ -1,6 +1,6 @@
 body {
   font-family: Helvetica, sans-serif;
-  background-color: #212529;
+  background-color: #272c31;
 }
 
 /** color */
@@ -17,7 +17,7 @@ body {
   color: black;
 }
 .black_background {
-  background-color: #212529;
+  background-color: #272c31;
 }
 .white_background {
   background-color: white;
@@ -25,7 +25,6 @@ body {
 .lightgrey_background {
   background-color: lightgrey;
 }
-
 .white_text {
   color: white;
 }
@@ -35,12 +34,23 @@ body {
   border-bottom: solid;
   border-color: #212529;
 }
-
-
+.border_solid {
+  border: solid;
+  border-color: black
+}
+.ital {
+  color: blue;
+}
 
 /** position */
 .center {
-  text-align-last: center;
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
 }
 .margin_top_30 {
   margin-top: 30px;
@@ -150,7 +160,4 @@ body {
 }
 .nav-link-ltr:hover::before {
   width: 80%;
-}
-#test {
-  text-align: left;
 }
