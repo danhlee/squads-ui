@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Navbar from './Navbar';
+import Navigationbar from './Navigationbar';
 import PageContainer from './PageContainer';
 
 import '../styles/App.css';
@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="black_background">
-        <Navbar setPageNameCB={this.setPageName} />
+        <Navigationbar setPageNameCB={this.setPageName} />
         <PageContainer pageName={this.state.pageName} />
       </div>
     );
