@@ -27,6 +27,26 @@ export function getRequest(endpoint, textResponseCallback) {
     .catch(error => console.error('Error:', error));
 }
 
+export function getRequestGather(endpoint, textResponseCallback, apiKeyValue) {
+  let options = {
+    method: 'GET'
+  };
+
+  let url = BASE_URL + endpoint + '?api_key=' + apiKeyValue;
+
+  console.log('url = ' + url);
+  fetch(url, options)
+    .then(function(response) {
+      console.log('response...');
+      response.text().then(function (text) {
+        console.log('text from response is ...' + text);
+        textResponseCallback(text);
+      });
+      
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 export function postRequest(endpoint, modelParam, data, setWinnerCallback) {
   let options = {
     method: 'POST',

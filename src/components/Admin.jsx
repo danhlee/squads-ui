@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, getRequestTrain, RANDOM_FOREST_MODEL } from '../utility/fetch';
+import { SEED, GATHER, TRAIN, TREE_MODEL, getRequest, getRequestTrain, getRequestGather, RANDOM_FOREST_MODEL } from '../utility/fetch';
 import { mapDispatchToProps, mapStateToProps } from '../redux/actionCreators';
 import ConfusionMatrix from './eval/ConfusionMatrix';
 import ConfusionMatrixTable from './eval/ConfusionMatrixTable';
@@ -13,7 +13,8 @@ class Admin extends Component {
     this.state = {
       selectedModel: TREE_MODEL,
       dropdownOpen: false,
-      textResponse: ''
+      textResponse: '',
+      apiKeyValue: ''
     }
     this.initializeWithSeedData = this.initializeWithSeedData.bind(this);
     this.gatherAndInsertNewData = this.gatherAndInsertNewData.bind(this);
@@ -22,6 +23,7 @@ class Admin extends Component {
     this.textResponseCallback = this.textResponseCallback.bind(this);
     this.dataResponseCallback = this.dataResponseCallback.bind(this);
     this.clearResponses = this.clearResponses.bind(this);
+    this.onChangeApiKey = this.onChangeApiKey.bind(this);
   }
 
   initializeWithSeedData() {
@@ -33,8 +35,8 @@ class Admin extends Component {
   }
 
   gatherAndInsertNewData() {
-    console.log('gathering new match data and adding to db...');
-    let response = getRequest(GATHER, this.textResponseCallback);
+    console.log('gathering new match data from Riot API and adding to db...');
+    let response = getRequestGather(GATHER, this.textResponseCallback, this.state.apiKeyValue);
     this.setState({
       textResponse: response
     });
@@ -67,7 +69,7 @@ class Admin extends Component {
   }
 
   dataResponseCallback(modelEvalData) {
-    const {setModelEvalData} = this.props;
+    const { setModelEvalData } = this.props;
     setModelEvalData(modelEvalData);
   }
 
@@ -78,7 +80,7 @@ class Admin extends Component {
   }
 
   getModelName() {
-    const {modelEvalData} = this.props;
+    const { modelEvalData } = this.props;
 
     if (modelEvalData.modelName === 'TREE') {
       return 'Decision Tree Model Evaluation';
@@ -91,6 +93,12 @@ class Admin extends Component {
     }
   }
 
+  onChangeApiKey(event) {
+    this.setState({
+      apiKeyValue: event.target.value
+    })
+  }
+
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
@@ -100,6 +108,14 @@ class Admin extends Component {
   render() {
     return (
       <div className="container-fluid black_background">
+        <Row className="margin_top_30 padding_top_bot_15">
+          <Col sm={{ size: 4, offset: 4 }}>
+            <InputGroup >
+              <InputGroupAddon addonType="prepend">API KEY</InputGroupAddon>
+              <Input onChange={this.onChangeApiKey}/>
+            </InputGroup>
+          </Col>
+        </Row>
         <Row className="margin_top_30 padding_top_bot_15 border_bottom center">
           <Col className="col-lg-4 col-md-2 col-sm-2 col-xs-2"></Col>
           <Col>
