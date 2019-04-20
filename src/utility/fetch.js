@@ -70,7 +70,7 @@ export function postRequest(endpoint, modelParam, data, setWinnerCallback) {
     .then( promise => {
       console.log('promise[winner] = ');
       console.log(promise['winner']);
-      setWinnerCallback(promise['winner']);
+      setWinnerCallback(promise['winner'], promise['confidence']);
     })
     .catch(error => { 
       console.error('Error:', error);

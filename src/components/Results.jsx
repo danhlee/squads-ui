@@ -14,14 +14,16 @@ class Results extends Component {
     if (this.props.winner === '100') {
       return (
         <div className="team_100_blue center margin_top_50 padding_all_30">
-          Blue team wins!
+          <div>Blue team wins!</div>
+          <div>Confidence: {this.props.confidence}</div>
         </div>
       );
     }
     else if (this.props.winner === '200') {
       return (
         <div className="team_200_red center margin_top_50 padding_all_30">
-          Red team wins!
+          <div>Red team wins!</div>
+          <div>Confidence: {this.props.confidence}</div>
         </div>
       );
     }

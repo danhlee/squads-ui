@@ -11,6 +11,7 @@ class Draft extends Component {
     super(props);
     this.state = {
       winner: '',
+      confidence: '',
       clearFields: false,
       dropdownOpen: false,
     }
@@ -54,14 +55,16 @@ class Draft extends Component {
     else {
       console.log('not all roles selected...');
       this.setState({
-        winner: 'invalid'
+        winner: 'invalid',
+        confidence: 'invalid'
       });
     }
   }
 
-  setWinner(winningTeamId) {
+  setWinner(winningTeamId, confidenceScore) {
     this.setState({
-      winner: winningTeamId
+      winner: winningTeamId,
+      confidence: confidenceScore
     });
   }
 
@@ -170,6 +173,7 @@ class Draft extends Component {
 
     this.setState({
       winner: '',
+      confidence: '',
       clearFields: true
     });
   }
@@ -220,7 +224,7 @@ class Draft extends Component {
 
         <Row className="black_background">
           <Col>
-            <Results winner={this.state.winner} />
+            <Results winner={this.state.winner} confidence={this.state.confidence}/>
           </Col>
         </Row>
       </div>
