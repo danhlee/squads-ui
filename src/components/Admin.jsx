@@ -14,7 +14,8 @@ class Admin extends Component {
       selectedModel: TREE_MODEL,
       dropdownOpen: false,
       textResponse: '',
-      apiKeyValue: ''
+      apiKeyValue: '',
+      summoner: ''
     }
     this.initializeWithSeedData = this.initializeWithSeedData.bind(this);
     this.gatherAndInsertNewData = this.gatherAndInsertNewData.bind(this);
@@ -24,6 +25,7 @@ class Admin extends Component {
     this.dataResponseCallback = this.dataResponseCallback.bind(this);
     this.clearResponses = this.clearResponses.bind(this);
     this.onChangeApiKey = this.onChangeApiKey.bind(this);
+    this.onChangeSummoner = this.onChangeSummoner.bind(this);
   }
 
   initializeWithSeedData() {
@@ -36,7 +38,7 @@ class Admin extends Component {
 
   gatherAndInsertNewData() {
     console.log('gathering new match data from Riot API and adding to db...');
-    let response = getRequestGather(GATHER, this.textResponseCallback, this.state.apiKeyValue);
+    let response = getRequestGather(GATHER, this.textResponseCallback, this.state.apiKeyValue, this.state.summoner);
     this.setState({
       textResponse: response
     });
@@ -98,6 +100,11 @@ class Admin extends Component {
       apiKeyValue: event.target.value
     })
   }
+  onChangeSummoner(event) {
+    this.setState({
+      summoner: event.target.value
+    })
+  }
 
   toggle() {
     this.setState({
@@ -114,7 +121,12 @@ class Admin extends Component {
               <InputGroupAddon addonType="prepend">API KEY</InputGroupAddon>
               <Input onChange={this.onChangeApiKey}/>
             </InputGroup>
+            <InputGroup >
+              <InputGroupAddon addonType="prepend">SUMMONER</InputGroupAddon>
+              <Input onChange={this.onChangeSummoner}/>
+            </InputGroup>
           </Col>
+
         </Row>
         <Row className="margin_top_30 padding_top_bot_15 border_bottom center">
           <Col className="col-lg-4 col-md-2 col-sm-2 col-xs-2"></Col>

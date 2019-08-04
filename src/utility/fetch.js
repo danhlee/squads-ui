@@ -27,12 +27,12 @@ export function getRequest(endpoint, textResponseCallback) {
     .catch(error => console.error('Error:', error));
 }
 
-export function getRequestGather(endpoint, textResponseCallback, apiKeyValue) {
+export function getRequestGather(endpoint, textResponseCallback, apiKeyValue, summoner) {
   let options = {
     method: 'GET'
   };
 
-  let url = BASE_URL + endpoint + '?api_key=' + apiKeyValue;
+  let url = BASE_URL + endpoint + '?api_key=' + apiKeyValue + '&summoner=' + summoner;
 
   console.log('url = ' + url);
   fetch(url, options)

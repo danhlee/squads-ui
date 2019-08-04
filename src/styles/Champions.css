@@ -1405,6 +1405,17 @@
   height: 50px;
   background-size: 50px;
 }
+.champion_246 {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: url(../assets/champion-icons/246.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  float: right;
+  height: 50px;
+  background-size: 50px;
+}
 .champion_254 {
   display: block;
   -moz-box-sizing: border-box;
@@ -1443,6 +1454,17 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-image: url(../assets/champion-icons/268.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  float: right;
+  height: 50px;
+  background-size: 50px;
+}
+.champion_350 {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: url(../assets/champion-icons/350.png);
   background-repeat: no-repeat;
   width: 50px;
   float: right;
